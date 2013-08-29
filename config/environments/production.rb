@@ -61,13 +61,23 @@ Myclio::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'example.com' }
+  config.action_mailer.default_url_options = { :host => ENV['HOST_URL'].dup }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+  	address: ENV['SMTP_HOST'],
+  	port:    ENV['SMTP_PORT'],
+  	domain:  ENV['SMTP_DOMAIN'],
+  	user_name: ENV['SMTP_USER'],
+  	password:  ENV['SMTP_PASSWORD'],
+  	authentication: :login,
+  	openssl_verify_mode: 'none'
+  }
+  
 
 
   # Log the query plan for queries taking more than this (works
