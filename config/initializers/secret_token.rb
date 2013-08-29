@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Myclio::Application.config.secret_token = '7014360f025dfeee1ae5596d6f7ecf6133a6dd6147723dc3a68e1dd9329aabdf5d2042c6022979ba7aa52f41bfbfc3cdcb8796dd1bce7549d68d472fe754727f'
+Myclio::Application.config.secret_token = 'c90d30c8e84de0cf83ebe97f0c45c1aa50305941cb2fa4b1a1a93ef2d46fd821aa98a3e6e83338022c48233b4a0b3e1648ed822e659966a5b9d4e547fc01f946'
