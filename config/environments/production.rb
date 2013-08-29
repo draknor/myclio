@@ -69,11 +69,11 @@ Myclio::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-  	address: ENV['SMTP_HOST'],
-  	port:    ENV['SMTP_PORT'],
-  	domain:  ENV['SMTP_DOMAIN'],
-  	user_name: ENV['SMTP_USER'],
-  	password:  ENV['SMTP_PASSWORD'],
+  	address: ENV['SMTP_HOST'].dup,
+  	port:    ENV['SMTP_PORT'].dup,
+  	domain:  ENV['SMTP_DOMAIN'].dup,
+  	user_name: ENV['SMTP_USER'].dup,
+  	password:  ENV['SMTP_PASSWORD'].dup,
   	authentication: :login,
   	openssl_verify_mode: 'none'
   }
