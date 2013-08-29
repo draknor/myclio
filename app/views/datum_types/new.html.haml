@@ -1,0 +1,12 @@
+%h1 New datum_type
+
+= simple_form_for @datum_type, :url => user_datum_types_path(current_user) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :description
+
+  .form-actions
+    = f.button :submit
+
+= link_to 'Back', user_datum_types_path(current_user)

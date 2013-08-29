@@ -1,0 +1,2 @@
+module DatumTypesHelper
+end
