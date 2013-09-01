@@ -5,7 +5,7 @@ class DataController < ApplicationController
   # GET /data.json
   def index
     #@data = Datum.all
-    @data = current_user.data.all
+    @data = current_user.data.desc.limit(25)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,7 +54,7 @@ class DataController < ApplicationController
 
     respond_to do |format|
       if @datum.save
-        format.html { redirect_to user_datum_path(current_user,@datum), notice: 'Data point was successfully logged.' }
+        format.html { redirect_to user_data_path(current_user), notice: 'Data point was successfully logged.' }
         format.json { render json: @datum, status: :created, location: @datum }
       else
         format.html { render action: "new" }
@@ -70,7 +70,7 @@ class DataController < ApplicationController
 
     respond_to do |format|
       if @datum.update_attributes(params[:datum])
-        format.html { redirect_to user_datum_path(current_user,@datum), notice: 'Data point was successfully updated.' }
+        format.html { redirect_to user_data_path(current_user), notice: 'Data point was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

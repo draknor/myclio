@@ -1,4 +1,12 @@
-%h1 Listing data
+
+%br
+(Put more useful text here...)
+%br
+%br
+= link_to 'New Data Point', new_user_datum_path(current_user)
+
+
+%h1 Most recent entries
 
 %table
   %tr
@@ -10,7 +18,7 @@
 
   - @data.each do |datum|
     %tr
-      %td= datum.created_at
+      %td= datum.created_at.strftime("%a, %b %e at %l:%M %P %Z")
       %td= datum.datumType.description
       %td= datum.value
       %td= datum.comment
@@ -21,4 +29,4 @@
 
 %br
 
-= link_to 'New Datum', new_user_datum_path(current_user)
+= link_to 'New Data Point', new_user_datum_path(current_user)

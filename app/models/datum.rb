@@ -4,4 +4,7 @@ class Datum < ActiveRecord::Base
   belongs_to :user, inverse_of: :data
   belongs_to :datumType, inverse_of: :data
 
+  scope :desc, order('created_at DESC')
+
+
 end

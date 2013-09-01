@@ -50,7 +50,7 @@ class DatumTypesController < ApplicationController
 
     respond_to do |format|
       if @datum_type.save
-        format.html { redirect_to user_datum_type_path(current_user,@datum_type), notice: "#{@datum_type.description} was successfully created." }
+        format.html { redirect_to user_datum_types_path(current_user), notice: "#{@datum_type.description} was successfully created." }
         format.json { render json: @datum_type, status: :created, location: @datum_type }
       else
         format.html { render action: "new" }
@@ -66,7 +66,7 @@ class DatumTypesController < ApplicationController
 
     respond_to do |format|
       if @datum_type.update_attributes(params[:datum_type])
-        format.html { redirect_to user_datum_type_path(current_user,@datum_type), notice: "#{@datum_type.description} was successfully updated." }
+        format.html { redirect_to user_datum_types_path(current_user), notice: "#{@datum_type.description} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
