@@ -57,6 +57,7 @@ class DataController < ApplicationController
         format.html { redirect_to user_data_path(current_user), notice: 'Data point was successfully logged.' }
         format.json { render json: @datum, status: :created, location: @datum }
       else
+        @formURL = user_data_path(current_user)
         format.html { render action: "new" }
         format.json { render json: @datum.errors, status: :unprocessable_entity }
       end
@@ -73,6 +74,7 @@ class DataController < ApplicationController
         format.html { redirect_to user_data_path(current_user), notice: 'Data point was successfully updated.' }
         format.json { head :no_content }
       else
+        @formURL = user_datum_path(current_user)
         format.html { render action: "edit" }
         format.json { render json: @datum.errors, status: :unprocessable_entity }
       end
