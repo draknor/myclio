@@ -7,7 +7,25 @@
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
 # Add application configuration variables here, as shown below.
 #
-ADMIN_NAME: First User
-ADMIN_EMAIL: user@example.com
-ADMIN_PASSWORD: changeme
-ROLES: [admin, user, VIP]
+ADMIN_NAME: Admin User
+ADMIN_EMAIL: email@myclio.net
+ADMIN_PASSWORD: password
+ROLES: [admin, user]
+
+# Misc settings
+HOST_URL: dev.myclio.net
+
+# SMTP settings
+SMTP_HOST: mail.myclio.net
+SMTP_PORT: 587
+SMTP_DOMAIN: myclio.net
+SMTP_USER: mail+myclio.net
+SMTP_PASSWORD: smtp-password
+SMTP_FROM: mail@myclio.net
+
+# DB settings
+DB_NAME: myclio
+DB_USER: myclio
+DB_PASSWORD: 
+DB_HOST: localhost
+DB_PORT: 3306
