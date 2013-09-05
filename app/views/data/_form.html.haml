@@ -2,7 +2,7 @@
   = f.error_notification
 
   .form-inputs
-    = f.association :datumType, label_method: :description, value_method: :id
+    = f.association :datumType, :collection =>DatumType.where(:id => current_user), label_method: :description, value_method: :id
     = f.input :value
     = f.input :comment
 
