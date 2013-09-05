@@ -6,5 +6,4 @@ class Datum < ActiveRecord::Base
 
   scope :desc, order('created_at DESC')
 
-  validates :datumType_id,  presence: true
 end

@@ -1,5 +1,6 @@
 class DataController < ApplicationController
   before_filter :authenticate_user!
+  around_filter :user_time_zone, :if => :current_user
 
   # GET /data
   # GET /data.json

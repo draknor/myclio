@@ -40,4 +40,7 @@ Myclio::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # disable assets logging
+  config.assets.logger = false
 end

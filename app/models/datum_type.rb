@@ -4,4 +4,7 @@ class DatumType < ActiveRecord::Base
   belongs_to :user, inverse_of: :datumType
   has_many :data
 
+  validates :description, presence: true
+
+
 end

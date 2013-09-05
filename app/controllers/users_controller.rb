@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  around_filter :user_time_zone, :if => :current_user
 
   def index
     authorize! :index, @user, :message => 'Not authorized as an administrator.'

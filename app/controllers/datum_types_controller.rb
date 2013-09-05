@@ -1,5 +1,6 @@
 class DatumTypesController < ApplicationController
   before_filter :authenticate_user!
+  around_filter :user_time_zone, :if => :current_user
 
   # GET /datum_types
   # GET /datum_types.json
