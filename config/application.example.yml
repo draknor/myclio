@@ -24,7 +24,13 @@ SMTP_PASSWORD: smtp-password
 SMTP_FROM: mail@myclio.net
 
 # DB settings
-DB_NAME: myclio
+development:
+  DB_NAME: myclio_dev
+test:
+  DB_NAME: myclio_test
+production:
+  DB_NAME: myclio_prod
+
 DB_USER: myclio
 DB_PASSWORD: 
 DB_HOST: localhost
