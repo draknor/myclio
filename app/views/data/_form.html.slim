@@ -8,7 +8,8 @@
       .small-7.columns
         .row.collapse
           .small-10.columns
-            = f.input :effective_at, as: :string, input_html: { class:"datetimeField" }, placeholder: "dd/mm/yyyy hh:mm tt"
+            input.datetimeField#effective_at_proxy type="text" placeholder="mm/dd/yyyy hh:mm"
+            = f.input_field :effective_at, as: :hidden
           .small-2.columns
             a.button.secondary.expand.postfix.calendarIcon href="#"
               i.icon-calendar
@@ -34,4 +35,4 @@
   .form-actions
     .row    
       .small-centered.small-6.columns.text-center
-        = f.button :submit, "Create"
+        = f.button :submit, button_description

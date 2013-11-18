@@ -1,0 +1,42 @@
+/= link_to 'New Data Point', new_user_datum_path(current_user)
+.row
+  h3 Recent entries
+  .large-9.columns
+    .row
+      = simple_form_for :datum, :url => user_data_path(current_user), method: :get do |f|
+        .large-3.columns
+          .row.collapse
+            .small-10.columns
+              = f.input :effective_at, input_html: {class: "dateField"}, placeholder: "Search date" 
+            .small-2.columns
+              a.button.secondary.expand.postfix.calendarIcon href="#"
+                i.icon-calendar
+        .large-3.columns
+          = f.input :datumType, collection: current_user.datumTypes, label_method: :description, value_method: :id
+        .large-3.columns
+          = f.input :comment, placeholder: "Search comments", input_html: {maxlength: 250}
+        .large-3.columns
+          = f.button :submit, "Search", class: "button small"
+    .row
+      table
+        tr
+          th Date/Time
+          th Data Type
+          th Value
+          th Comment
+          th Actions
+
+        - @data.each do |datum|
+          tr
+            td = datum.effective_at.strftime("%a, %b %e at %l:%M %P %Z")
+            td = datum.datumType.nil? ? "" : datum.datumType.description
+            td = datum.value
+            td = datum.comment
+            td
+              = link_to 'Show', user_datum_path(current_user,datum), class: "button tiny"
+              = link_to 'Edit', edit_user_datum_path(current_user,datum), class: "button tiny" 
+              = link_to 'Destroy', user_datum_path(current_user,datum), class: "button tiny", :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  .large-3.columns
+    .panel
+      |Stuff

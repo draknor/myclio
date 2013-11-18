@@ -68,6 +68,15 @@ $(document).ready( function() {
         showMonthAfterYear: true
       });
 
+    $(".dateField").datepicker( {
+        dateFormat: "mm/dd/yy",
+        showButtonPanel: true,
+        changeYear: true,
+        changeMonth: true,
+        showMonthAfterYear: true
+      });
+
+
     // /* 
     //   When a user closes the datepicker calendar but then manually
     //   types overtop of the date that was entered, enforce the
@@ -76,24 +85,43 @@ $(document).ready( function() {
     // /*
     //   When a date calendar icon is clicked, show the calendar.
     // */
-    // $(".calendarIcon").click(function() {
-    //   // Find the date field in the row that contains the button
-    //   dateInput = $(this).closest('.row').find('.datetimeField');
+    $(".calendarIcon").click(function() {
+      // Find the date field in the row that contains the button
+      dateInput = $(this).closest('.row').find('.dateField, .datetimeField');
 
-    //   if (dateInput) {
-    //     if (dateInput.datetimepicker('widget').is(':hidden')) {
-    //       dateInput.datetimepicker("show");
-    //     } else {
-    //       dateInput.datetimepicker("hide");
-    //     }
-    //   }
+      if (dateInput) {
+        if (dateInput.datepicker('widget').is(':hidden')) {
+          dateInput.datepicker("show");
+        } else {
+          dateInput.datepicker("hide");
+        }
+      }
 
-    //   return false;  //Prevent scroll to top of screen
-    // });
+      return false;  //Prevent scroll to top of screen
+    });
 
 
-  if ($('body.data_new')) {
+  if ( $("#effective_at_proxy").length ) {
+    $("#effective_at_proxy").on("change", function() { 
+      var val = new Date($("#effective_at_proxy").val());
+      console.log(val);
+      var str = $.datepicker.formatDate("yy-m-d",val) + " " + val.getHours() + ":" + val.getMinutes() ;
+      $("#datum_effective_at").val(str); 
+
+    });
+  } 
+
+
+  if ($('body.data_new').length) {
      $(".datetimeField").datetimepicker('setDate', (new Date()) );
   }
 
+  if ($('body.data_edit').length) {
+     date = new Date($('#datum_effective_at').val());
+     $(".datetimeField").datetimepicker('setDate', date );
+  }
+
+
 });
+
+

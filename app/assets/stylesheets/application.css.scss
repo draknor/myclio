@@ -80,3 +80,8 @@ select {
   @include form-element;
   padding: 0;
 }
+
+.ui-datepicker .ui-datepicker-title select {
+  font-size: 0.8em;
+  display: inline-block;
+}
