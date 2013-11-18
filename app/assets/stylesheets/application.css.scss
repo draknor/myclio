@@ -8,12 +8,9 @@ $warn-color: #915200;
 $alert-color: $error-color;
 $notice-color: $success-color;
 
-$td-font: "Courier New", Courier, monospace;
-
-
 // Import vendor frameworks & vendor files
-@import 'foundation_and_overrides';  // includes foundation
 @import 'normalize';
+@import 'foundation_and_overrides';  // includes foundation
 @import 'compass';
 @import "jquery.ui.all";
 @import "datetime";
@@ -85,3 +82,38 @@ select {
   font-size: 0.8em;
   display: inline-block;
 }
+
+.panel table {
+	width: 100%;
+
+	.datetime {
+		width: 9em;
+	}
+
+	.datatype {
+		width: 11em;
+		text-align: left;
+	}
+
+	.value {
+		width: 5em;
+		text-align: right;
+	}
+
+	.comment {
+		width: auto;
+	}
+
+	.actions {
+		width: 9em;
+		text-align: center;
+		.alert {
+			margin: 0 0.75em;
+		}
+	}
+
+	td {
+		vertical-align: top;
+	}
+}
+
