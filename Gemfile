@@ -17,8 +17,14 @@ gem 'simple_form'
 gem 'slim'
 gem 'haml'
 group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'compass-rails'
   gem 'zurb-foundation'
+  gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-rails'
+  gem 'jquery-ui-sass-rails'
+  gem "font-awesome-rails", "~> 3.2.1.3"  #Handles tying Font Awesome files into Asset Pipeline
 end
 group :development do
   gem 'better_errors'

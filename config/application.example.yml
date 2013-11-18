@@ -14,6 +14,7 @@ ROLES: [admin, user]
 
 # Misc settings
 HOST_URL: dev.myclio.net
+FORCE_SSL: false
 
 # SMTP settings
 SMTP_HOST: mail.myclio.net

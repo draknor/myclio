@@ -1,0 +1,45 @@
+
+$alert-bg-factor: 70%;
+
+// Override alert-boxes to get custom font color
+
+// We use this mixin to add alert styles
+@mixin alert-style-color-font($color:$primary-color,$image:'') {
+
+//This find the lightness percentage of the background color.
+  $color-lightness: lightness($color);
+
+// We control which background color and border come through.
+  color: $color;
+  border-color: $color;
+
+// We control the text color for you based on the background color.
+//  @if $color-lightness > 70% { background-color: darken($color,$alert-bg-factor); }
+//  @else                      { background-color: lighten($color,$alert-bg-factor); }
+  background-color: lighten($color,67%);
+
+  @if $image != '' {
+    padding-left: emCalc(55);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-image: image-url($image);
+  }
+
+}
+
+// Override .alert-box for my customized version
+.alert-box {
+  @include alert;
+
+  .close { @include alert-close; }
+  &.radius { @include radius($alert-radius); }
+  &.round { @include radius($global-rounded); }
+  &.success { @include alert-style-color-font($success-color,"success.png"); }
+  &.error { @include alert-style-color-font($error-color,"error.png"); }
+  &.info { @include alert-style-color-font($info-color,"info.png"); }
+  &.warn { @include alert-style-color-font($warn-color,"warn.png"); }
+  &.alert { @include alert-style-color-font($alert-color,"error.png"); }
+  &.notice { @include alert-style-color-font($notice-color,"success.png"); }
+  &.secondary { @include alert-style-color-font($secondary-color); }
+
+}

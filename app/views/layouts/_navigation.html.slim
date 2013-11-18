@@ -2,21 +2,22 @@
   nav.top-bar
     ul.title-area
       li.name
-        = link_to "MyClio", root_path, :class => 'brand'
-      li.toggle-topbar
-        a href="#" +
+        h1
+          = link_to "MyClio", root_path, :class => 'brand'
+      li.toggle-topbar.menu-icon
+        a href="#" <span></span>
       section.top-bar-section
         ul.left
           li.divider
           - if user_signed_in?
             li
-              = link_to 'Enter data', new_user_datum_path(current_user)
+              = link_to 'Enter Data', new_user_datum_path(current_user)
             li
-              = link_to 'View data', user_data_path(current_user)
+              = link_to 'View Data', user_data_path(current_user)
             li
-              = link_to 'Edit data types', user_datum_types_path(current_user)
+              = link_to 'Edit Data Types', user_datum_types_path(current_user)
             li
-              = link_to 'Edit account', edit_user_registration_path
+              = link_to 'Edit Account', edit_user_registration_path
           - else
             li
               = link_to 'Sign up', new_user_registration_path

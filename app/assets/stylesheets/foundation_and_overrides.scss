@@ -53,7 +53,7 @@ $default-float: left;
 
 // $body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: Verdana, Geneva, sans-serif;  //Georgia, serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -160,7 +160,7 @@ $default-float: left;
 
 // Control header font styles
 
-// $header-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$header-font-family: Verdana, Geneva, sans-serif; //Georgia, serif;
 // $header-font-weight: bold;
 // $header-font-style: normal;
 // $header-font-color: #222;
@@ -878,7 +878,7 @@ $default-float: left;
 
 // We use these to control the background and border styles
 
-// $panel-bg: darken(#fff, 5%);
+$panel-bg: #D9E0EA;
 // $panel-border-style: solid;
 // $panel-border-size: 1px;
 
@@ -1234,7 +1234,7 @@ $default-float: left;
 
 // Background color for the top bar
 
-// $topbar-bg: #111;
+$topbar-bg: $primary-color;
 
 // Height and margin
 
@@ -1261,14 +1261,16 @@ $default-float: left;
 
 // Set the link colors and styles for top-level nav
 
-// $topbar-link-color: #fff;
-// $topbar-link-color-hover: #fff;
-// $topbar-link-color-active: #fff;
+// Set the link colors and styles for top-level nav
+
+$topbar-link-color: #fff;
+$topbar-link-color-hover: #f00;
+$topbar-link-color-active: #fff;
 // $topbar-link-weight: bold;
 // $topbar-link-font-size: emCalc(13);
-// $topbar-link-hover-lightness: -30%; // Darken by 30%
-// $topbar-link-bg-hover: darken($topbar-bg, 3%);
-// $topbar-link-bg-active: darken($topbar-bg, 3%);
+$topbar-link-hover-lightness: -30%; // Darken by 30%
+$topbar-link-bg-active: lighten($topbar-bg, 30%);
+$topbar-link-bg-hover: $topbar-link-bg-active;
 
 // $topbar-dropdown-label-color: #555;
 // $topbar-dropdown-label-text-transform: uppercase;

@@ -18,7 +18,7 @@
 
   - @data.each do |datum|
     %tr
-      %td= datum.created_at.strftime("%a, %b %e at %l:%M %P %Z")
+      %td= datum.effective_at.strftime("%a, %b %e at %l:%M %P %Z")
       %td= datum.datumType.nil? ? "" : datum.datumType.description
       %td= datum.value
       %td= datum.comment

@@ -1,0 +1,37 @@
+= simple_form_for @datum, :url => @formURL do |f|
+  = f.error_notification
+
+  .form-inputs
+    .row
+      .small-3.columns.text-right
+        = f.label :effective_at
+      .small-7.columns
+        .row.collapse
+          .small-10.columns
+            = f.input :effective_at, as: :string, input_html: { class:"datetimeField" }, placeholder: "dd/mm/yyyy hh:mm tt"
+          .small-2.columns
+            a.button.secondary.expand.postfix.calendarIcon href="#"
+              i.icon-calendar
+      .small-2.columns
+
+    .row
+      .small-3.columns.text-right
+        = f.label :datumType
+      .small-9.columns
+        = f.association :datumType, collection: @datumTypes, label_method: :description, value_method: :id
+    .row
+      .small-3.columns.text-right
+        = f.label :value
+      .small-5.columns
+        = f.input :value
+      .small-4.columns
+    .row
+      .small-3.columns.text-right
+        = f.label :comment
+      .small-9.columns
+        = f.input :comment, as: :text, input_html: {maxlength: 250}
+
+  .form-actions
+    .row    
+      .small-centered.small-6.columns.text-center
+        = f.button :submit, "Create"

@@ -72,5 +72,9 @@ module Myclio
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Force SSL by default is off:
+    config.force_ssl = (!ENV['FORCE_SSL'].nil? && ENV['FORCE_SSL'].upcase == 'TRUE') || false
+
   end
 end
