@@ -122,6 +122,11 @@ $(document).ready( function() {
   }
 
 
+  $("select").on("change", function() {
+  	if ($(this).val() == '') { $(this).addClass('placeholder'); }
+  	else { $(this).removeClass('placeholder'); }
+  });
+
 });
 
 

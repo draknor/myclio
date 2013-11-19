@@ -1,23 +1,28 @@
 /= link_to 'New Data Point', new_user_datum_path(current_user)
 .row
-  .large-9.columns
+  .large-10.columns
     .panel.radius
-      h3 Recent entries
+      h3 = @isSearch ? "Search Results" : "Recent entries"
       .row
-        = simple_form_for :datum, :url => user_data_path(current_user), method: :get do |f|
+        = form_tag user_data_path(current_user), method: :get do
           .large-3.columns
             .row.collapse
               .small-10.columns
-                = f.input :effective_at, input_html: {class: "dateField"}, placeholder: "Search date" 
+                input.dateField#effective_at_proxy type="text" placeholder="Search date"
+                = hidden_field_tag :datum_effective_at
               .small-2.columns
                 a.button.secondary.expand.postfix.calendarIcon href="#"
                   i.icon-calendar
           .large-3.columns
-            = f.input :datumType, collection: current_user.datumTypes, label_method: :description, value_method: :id
+            = select_tag :datumType, options_for_select( current_user.datumTypes.collect { |d| [d.description, d.id] } ), {prompt: 'Search types', class: 'placeholder'}
           .large-3.columns
-            = f.input :comment, placeholder: "Search comments", input_html: {maxlength: 250}
+            = text_field_tag :comment, nil, {placeholder: "Search comments"}
           .large-3.columns
-            = f.button :submit, "Search", class: "button small"
+            ul.small-block-grid-2
+              li
+                = submit_tag "Search", class: "button small"
+              li
+                = link_to 'Recent', user_data_path(current_user), class: "button small"
       .row
         table
           tr
@@ -27,16 +32,20 @@
             th.comment Comment
             th.actions Actions
 
-          - @data.each do |datum|
+          - if @data.length > 0
+            - @data.each do |datum|
+              tr
+                td.datetime = datum.effective_at.nil? ? "" : datum.effective_at.strftime("%a, %b %e %Y at %l:%M %P %Z")
+                td.datatype = datum.datumType.nil? ? "" : datum.datumType.description
+                td.value = datum.value
+                td.comment = datum.comment
+                td.actions
+                  = link_to 'Edit', edit_user_datum_path(current_user,datum), class: "button small" 
+                  = link_to 'X', user_datum_path(current_user,datum), class: "button small alert", :method => :delete, :data => { :confirm => 'Are you sure?' }
+          - else
             tr
-              td.datetime = datum.effective_at.strftime("%a, %b %e at %l:%M %P %Z")
-              td.datatype = datum.datumType.nil? ? "" : datum.datumType.description
-              td.value = datum.value
-              td.comment = datum.comment
-              td.actions
-                = link_to 'Edit', edit_user_datum_path(current_user,datum), class: "button small" 
-                = link_to 'X', user_datum_path(current_user,datum), class: "button small alert", :method => :delete, :data => { :confirm => 'Are you sure?' }
+              td.text-center colspan="5" No data points found!
 
-  .large-3.columns
+  .large-2.columns
     .panel
-      |Stuff
+      |Future Stuff

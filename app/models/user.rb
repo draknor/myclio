@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
     self[:time_zone].nil? ? Myclio::Application.config.time_zone : self[:time_zone]
   end
 
-
+  def searchData(searchVals,max = 0)
+  	searchVals[:user_id] = self.id
+  	Datum.search(searchVals)
+	end
 
 end

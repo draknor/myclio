@@ -76,6 +76,10 @@ dl {
 select {
   @include form-element;
   padding: 0;
+
+  &.placeholder {
+  	color: #999;
+  }
 }
 
 .ui-datepicker .ui-datepicker-title select {
@@ -87,7 +91,7 @@ select {
 	width: 100%;
 
 	.datetime {
-		width: 9em;
+		width: 12em;
 	}
 
 	.datatype {

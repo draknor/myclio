@@ -6,7 +6,14 @@ class DataController < ApplicationController
   # GET /data.json
   def index
     #@data = Datum.all
-    @data = current_user.data.desc.limit(25)
+    if params[:commit] == "Search"
+    	@isSearch = true
+    	params[:effective_at] = params[:datum_effective_at]
+    	@data = current_user.searchData(params)
+    else
+    	@isSearch = false
+    	@data = current_user.data.desc.limit(25)
+  	end
 
     respond_to do |format|
       format.html # index.html.erb
