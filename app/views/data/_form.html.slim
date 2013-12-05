@@ -36,3 +36,4 @@
     .row    
       .small-centered.small-6.columns.text-center
         = f.button :submit, button_description
+        = f.button :submit, "Create and Stay" if @formURL == user_data_path(current_user)

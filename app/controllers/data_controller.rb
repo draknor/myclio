@@ -61,10 +61,12 @@ class DataController < ApplicationController
   def create
     @datum = Datum.new(params[:datum])
     @datum.user_id = current_user.id
+    stay = (params[:commit] == "Create and Stay")
+    redirect_path = stay ? new_user_datum_path(current_user) : user_data_path(current_user)
 
     respond_to do |format|
       if @datum.save
-        format.html { redirect_to user_data_path(current_user), notice: 'Data point was successfully logged.' }
+        format.html { redirect_to redirect_path, notice: 'Data point was successfully logged.' }
         format.json { render json: @datum, status: :created, location: @datum }
       else
         @formURL = user_data_path(current_user)
