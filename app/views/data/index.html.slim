@@ -9,7 +9,7 @@
               li
                 .row.collapse
                   .small-10.columns
-                    input.dateField#effective_at_proxy type="text" placeholder="Search date" value="#{params[:datum_effective_at].empty? ? '' : params[:datum_effective_at].to_time.strftime('%m/%d/%Y')}"
+                    input.dateField#effective_at_proxy type="text" placeholder="Search date" value="#{params[:datum_effective_at].blank? ? '' : params[:datum_effective_at].to_time.strftime('%m/%d/%Y')}"
                     = hidden_field_tag :datum_effective_at, params[:datum_effective_at]
                   .small-2.columns
                     a.button.secondary.expand.postfix.calendarIcon href="#"
