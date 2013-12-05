@@ -1,0 +1,12 @@
+= simple_form_for @group, :url => formURL do |f|
+  = f.error_notification
+  .form-inputs
+    .field.row        
+      .small-4.columns.text-right
+        = f.label :name
+      .small-8.columns
+        = f.input :name
+
+  .form-actions
+    .field.row.text-center
+      = f.button :submit, button_description

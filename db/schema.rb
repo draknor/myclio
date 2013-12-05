@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131117171828) do
+ActiveRecord::Schema.define(:version => 20131205050814) do
 
   create_table "data", :force => true do |t|
     t.integer  "user_id"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(:version => 20131117171828) do
     t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "group_id"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -62,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20131117171828) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "time_zone"
+    t.integer  "other_group_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

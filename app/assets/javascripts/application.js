@@ -65,7 +65,9 @@ $(document).ready( function() {
         showButtonPanel: true,
         changeYear: true,
         changeMonth: true,
-        showMonthAfterYear: true
+        showMonthAfterYear: true,
+        addSliderAccess: true,
+        sliderAccessArgs: {}
       });
 
     $(".dateField").datepicker( {
@@ -76,6 +78,7 @@ $(document).ready( function() {
         showMonthAfterYear: true
       });
 
+    $("table.tablesorter").tablesorter();
 
     // /* 
     //   When a user closes the datepicker calendar but then manually

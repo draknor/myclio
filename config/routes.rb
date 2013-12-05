@@ -9,5 +9,6 @@ Myclio::Application.routes.draw do
   resources :users do
     resources :data
     resources :datum_types
+    resources :groups
   end
 end

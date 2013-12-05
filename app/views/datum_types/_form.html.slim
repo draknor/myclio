@@ -1,6 +1,13 @@
 = simple_form_for @datum_type, :url => formURL do |f|
   = f.error_notification
   .form-inputs
+    .field.row
+      .small-4.columns.text-right
+        = f.label :group
+      .small-8.columns
+        = f.association :group, collection: @groups, label_method: :name, value_method: :id
+
+
     .field.row        
       .small-4.columns.text-right
         = f.label :description

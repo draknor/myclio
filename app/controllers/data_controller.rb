@@ -38,6 +38,7 @@ class DataController < ApplicationController
   def new
     @datum = Datum.new
     @datumTypes = current_user.datumTypes.all
+    @groups = current_user.groups.all
     @formURL = user_data_path(current_user)
 
     respond_to do |format|
@@ -50,6 +51,7 @@ class DataController < ApplicationController
   def edit
     @datum = current_user.data.find(params[:id])
     @datumTypes = current_user.datumTypes.all
+    @groups = current_user.groups.all
     @formURL = user_datum_path(current_user)
 
   end

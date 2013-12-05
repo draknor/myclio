@@ -7,6 +7,7 @@ class DatumTypesController < ApplicationController
   def index
     @user = current_user
     @datum_types = current_user.datumTypes.all
+    @groups = current_user.userGroups
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,20 +17,21 @@ class DatumTypesController < ApplicationController
 
   # GET /datum_types/1
   # GET /datum_types/1.json
-  def show
-    @user = current_user
-    @datum_type = current_user.datumTypes.find(params[:id])
+  # def show
+  #   @user = current_user
+  #   @datum_type = current_user.datumTypes.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @datum_type }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html # show.html.erb
+  #     format.json { render json: @datum_type }
+  #   end
+  # end
 
   # GET /datum_types/new
   # GET /datum_types/new.json
   def new
     @datum_type = DatumType.new
+    @groups = current_user.userGroups
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +43,7 @@ class DatumTypesController < ApplicationController
   def edit
     @user = current_user
     @datum_type = current_user.datumTypes.find(params[:id])
+    @groups = current_user.userGroups
   end
 
   # POST /datum_types

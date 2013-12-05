@@ -1,22 +1,25 @@
-/= link_to 'New Data Point', new_user_datum_path(current_user)
 .row
-  .large-10.columns
+  .large-12.columns
     .panel.radius
       h3 = @isSearch ? "Search Results" : "Recent entries"
       .row
         = form_tag user_data_path(current_user), method: :get do
-          .large-3.columns
-            .row.collapse
-              .small-10.columns
-                input.dateField#effective_at_proxy type="text" placeholder="Search date"
-                = hidden_field_tag :datum_effective_at
-              .small-2.columns
-                a.button.secondary.expand.postfix.calendarIcon href="#"
-                  i.icon-calendar
-          .large-3.columns
-            = select_tag :datumType, options_for_select( current_user.datumTypes.collect { |d| [d.description, d.id] } ), {prompt: 'Search types', class: 'placeholder'}
-          .large-3.columns
-            = text_field_tag :comment, nil, {placeholder: "Search comments"}
+          .large-9.columns
+            ul.large-block-grid-4
+              li
+                .row.collapse
+                  .small-10.columns
+                    input.dateField#effective_at_proxy type="text" placeholder="Search date" value="#{params[:datum_effective_at].empty? ? '' : params[:datum_effective_at].to_time.strftime('%m/%d/%Y')}"
+                    = hidden_field_tag :datum_effective_at, params[:datum_effective_at]
+                  .small-2.columns
+                    a.button.secondary.expand.postfix.calendarIcon href="#"
+                      i.icon-calendar
+              li
+                = select_tag :group, options_for_select( current_user.groups.collect { |d| [d.name, d.id] }, params[:group] ), {prompt: 'Search groups', class: 'placeholder'}
+              li
+                = select_tag :datumType, grouped_options_for_select( current_user.groups.collect { |g| [g.name,g.datumTypes.collect { |d| [d.description, d.id] } ] }, params[:datumType] ), {prompt: 'Search types', class: 'placeholder'}
+              li
+                = text_field_tag :comment, params[:comment], {placeholder: "Search comments"}
           .large-3.columns
             ul.small-block-grid-2
               li
@@ -46,6 +49,3 @@
             tr
               td.text-center colspan="5" No data points found!
 
-  .large-2.columns
-    .panel
-      |Future Stuff

@@ -5,17 +5,21 @@
       .text-center
         = link_to 'New Data Type', new_user_datum_type_path(current_user), { class: "button small" }
 
-      table
-        tr
-          th Description
-          th.actions Actions
-
-        - @datum_types.each do |datum_type|
+      table.tablesorter
+        thead
           tr
-            td = datum_type.description
-            td.actions
-              = link_to 'Edit', edit_user_datum_type_path(current_user,datum_type), class: "button small"
-              = link_to 'X', user_datum_type_path(current_user,datum_type), class: "button small alert", :method => :delete, :data => { :confirm => 'Are you sure?' }
+            th Group
+            th Description
+            th.actions Actions
+
+        tbody
+          - @datum_types.each do |datum_type|
+            tr
+              td = @groups.include?(datum_type.group) ? datum_type.group.name : ''
+              td = datum_type.description
+              td.actions
+                = link_to 'Edit', edit_user_datum_type_path(current_user,datum_type), class: "button small"
+                = link_to 'X', user_datum_type_path(current_user,datum_type), class: "button small alert", :method => :delete, :data => { :confirm => 'Are you sure?' }
 
       .text-center
         = link_to 'New Data Type', new_user_datum_type_path(current_user), { class: "button small" }

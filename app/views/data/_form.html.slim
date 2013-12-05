@@ -19,7 +19,7 @@
       .small-3.columns.text-right
         = f.label :datumType
       .small-9.columns
-        = f.association :datumType, collection: @datumTypes, label_method: :description, value_method: :id
+        = f.association :datumType, collection: @groups, as: :grouped_select, label_method: :description, value_method: :id, group_method: :datumTypes, group_label_method: :name
     .row
       .small-3.columns.text-right
         = f.label :value

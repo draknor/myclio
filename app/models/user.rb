@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   has_many :datumTypes, inverse_of: :user
   has_many :data, inverse_of: :user
+  has_many :groups, inverse_of: :user
 
 
   # Attributes
@@ -24,4 +25,16 @@ class User < ActiveRecord::Base
   	Datum.search(searchVals)
 	end
 
+  def generate_other_group
+    return if self.other_group_id
+    group = Group.new(name: "{other}", user_id: self.id)
+    if group.save
+      self.update_attribute(:other_group_id,group.id)
+      return group.id
+    end
+  end
+
+  def userGroups
+    groups = Group.where("user_id = ? AND id <> ?", self.id, self.other_group_id).all
+  end
 end

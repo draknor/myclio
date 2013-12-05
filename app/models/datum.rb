@@ -21,6 +21,11 @@ class Datum < ActiveRecord::Base
   		data = data.scoped( :conditions => ['datumType_id = ?', searchVals[:datumType] ] ) 
 		end
 
+    unless searchVals[:group].blank?
+      datumTypes = DatumType.find_by_group_id(searchVals[:group])
+      data = data.scoped( :conditions => ['datumType_id IN (?)', datumTypes ] ) 
+    end
+
 		unless searchVals[:effective_at].blank?
   		date = Time.zone.parse(searchVals[:effective_at])
   		data = data.scoped( :conditions => ['DATE(effective_at) = DATE(?)', date] ) unless date.blank?
