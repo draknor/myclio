@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
     @groups = current_user.userGroups
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.slim
       format.json { render json: @groups }
     end
   end

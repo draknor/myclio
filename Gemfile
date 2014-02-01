@@ -3,11 +3,6 @@ ruby '1.9.3'
 gem 'rails', '3.2.13'
 gem 'sqlite3'
 gem 'mysql2'
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
 gem 'jquery-rails'
 gem 'cancan'
 gem 'devise'
@@ -15,7 +10,6 @@ gem 'figaro'
 gem 'rolify'
 gem 'simple_form'
 gem 'slim'
-gem 'haml'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -28,10 +22,9 @@ group :assets do
 end
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
-  gem 'haml-rails'
-  gem 'haml2slim'
-  gem 'html2haml'
+  gem 'binding_of_caller'  #, :platforms=>[:mri_19, :mri_20, :rbx]
+  gem 'quiet_assets'
+  gem 'webrick', '1.3.1'  # fixes "could not determine content-length" console errors
 end
 group :development, :test do
   gem 'factory_girl_rails'

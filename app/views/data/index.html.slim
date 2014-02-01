@@ -1,8 +1,14 @@
 .row
   .large-12.columns
     .panel.radius
-      h3 = @isSearch ? "Search Results" : "Recent entries"
       .row
+        .small-9.columns
+          h3 = @isSearch ? "Search Results" : "Recent entries"
+        .small-3.columns
+          .show-for-small
+            = link_to 'Enter Data', new_user_datum_path(current_user), class: "button small"
+
+      .row.hide-for-small
         = form_tag user_data_path(current_user), method: :get do
           .large-9.columns
             ul.large-block-grid-4

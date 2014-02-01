@@ -1,21 +1,22 @@
 .row
   .large-8.large-centered.columns
-    h3 Listing Data Type Groups for #{current_user.name}
+    h3 Listing Groups for #{current_user.name}
     .panel.radius
       .text-center
         = link_to 'New Group', new_user_group_path(current_user), { class: "button small" }
 
       table
-        tr
-          th Group
-          th.actions Actions
-
-        - @groups.each do |group|
+        thead
           tr
-            td = group.name
-            td.actions
-              = link_to 'Edit', edit_user_group_path(current_user,group), class: "button small"
-              = link_to 'X', user_group_path(current_user,group), class: "button small alert", :method => :delete, :data => { :confirm => 'Are you sure?' }
+            th Group
+            th.actions Actions
+        tbody
+          - @groups.each do |group|
+            tr
+              td = group.name
+              td.actions
+                = link_to 'Edit', edit_user_group_path(current_user,group), class: "button small"
+                = link_to 'X', user_group_path(current_user,group), class: "button small alert", :method => :delete, :data => { :confirm => 'Are you sure?' }
 
       .text-center
         = link_to 'New Group', new_user_group_path(current_user), { class: "button small" }

@@ -1,4 +1,4 @@
-# lib/tasks/assign_default_group.rake
+#rake seed:assign_default_group
 namespace :seed do
   desc "assign default other data type group to data types that do not have a group already"
   task :assign_default_group => :environment do

@@ -10,7 +10,7 @@ $notice-color: $success-color;
 
 // Import vendor frameworks & vendor files
 @import 'normalize';
-@import 'foundation_and_overrides';  // includes foundation
+@import 'settings';  // includes foundation
 @import 'compass';
 @import "jquery.ui.all";
 @import "datetime";
@@ -25,7 +25,7 @@ html, body {
 
 .container {
   min-height: 100%;
-  padding-top: 20px;
+  //padding-top: 20px;
   //margin: 0 auto -30px;
 }
 
@@ -44,6 +44,14 @@ html, body {
 
 .form-actions .row {
   margin-top: 15px;
+}
+
+textarea {
+  height: auto !important;
+}
+
+.hidden {
+  display: none;
 }
 
 /*
@@ -145,3 +153,15 @@ table.tablesorter thead tr .headerSortDown {
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
 background-color: #8dbdd8;
 }
+
+
+@media (max-width: 768px) {
+  table tbody tr th {
+    font-size: emCalc(12);
+  }
+
+  table tbody tr td {
+    font-size: emCalc(10);
+  }
+}
+

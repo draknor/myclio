@@ -107,7 +107,7 @@ $(document).ready( function() {
   if ( $("#effective_at_proxy").length ) {
     $("#effective_at_proxy").on("change", function() { 
       var val = new Date($("#effective_at_proxy").val());
-      console.log(val);
+      //console.log(val);
       var str = $.datepicker.formatDate("yy-m-d",val) + " " + val.getHours() + ":" + val.getMinutes() ;
       $("#datum_effective_at").val(str); 
 
@@ -117,11 +117,22 @@ $(document).ready( function() {
 
   if ($('body.data_new').length) {
      $(".datetimeField").datetimepicker('setDate', (new Date()) );
+
+     // Create dummy select to hold the entire optgroup list of groups / types
+     $("select#datum_datumType_id").after('<select id="holding" class="hidden"></select>');
+     // Shuffle optgroups around when group is changed
+     $("select#groups").on("change", change_groups );
   }
 
   if ($('body.data_edit').length) {
      date = new Date($('#datum_effective_at').val());
      $(".datetimeField").datetimepicker('setDate', date );
+
+     // Create dummy select to hold the entire optgroup list of groups / types
+     $("select#datum_datumType_id").after('<select id="holding" class="hidden"></select>');
+     // Shuffle optgroups around when group is changed
+     $("select#groups").on("change", change_groups );
+
   }
 
 
@@ -132,4 +143,30 @@ $(document).ready( function() {
 
 });
 
+function change_groups() {
+  var selGroups = "select#groups"
+  var selHolding = "select#holding"
+  var selTypes = "select#datum_datumType_id"
 
+  var val = $(selGroups).val();
+  var typeVal = $(selTypes).val();
+
+  if (val == '') { 
+    $(selTypes + " optgroup").appendTo(selHolding);
+    // now re-sort the option groups & append back to original select
+    var groups = $(selHolding).children("optgroup").get()
+    groups.sort(function(a,b) {
+      var upA = $(a).attr("label");
+      var upB = $(b).attr("label");
+      return (upA < upB) ? -1 : (upA > upB) ? 1 : 0;
+    })
+    $.each(groups, function(idx,itm) { $(selTypes).append(itm); });
+
+  }
+  else { 
+    $(selTypes + " optgroup").not("[label='" + val + "']").appendTo(selHolding); 
+    $(selHolding + " optgroup[label='" + val + "']").appendTo(selTypes); 
+  }
+
+  $(selTypes).val([]);  // reset selected option to blank
+}
