@@ -61,7 +61,7 @@ class DataController < ApplicationController
   def create
     @datum = Datum.new(params[:datum])
     @datum.user_id = current_user.id
-    stay = (params[:commit] == "Create and Stay")
+    stay = (params[:commit] == "Create & Stay")
     redirect_path = stay ? new_user_datum_path(current_user) : user_data_path(current_user)
 
     respond_to do |format|
