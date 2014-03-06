@@ -3,11 +3,7 @@
 
   .form-inputs
     .row
-      .small-6.columns
-        = f.label "Group"
-        = select_tag "groups", options_from_collection_for_select(@groups, "name", "name"), include_blank: true
-     
-      .small-6.columns
+      .large-6.push-6.columns
         = f.label :effective_at
         .row.collapse
           .small-10.columns
@@ -16,26 +12,30 @@
           .small-2.columns
             a.button.secondary.expand.postfix.calendarIcon href="#"
               i.icon-calendar
+     
+      .large-6.pull-6.columns
+        = f.label "Group"
+        = select_tag "groups", options_from_collection_for_select(@groups, "name", "name"), include_blank: true
     .row
-      .small-6.columns
+      .large-6.columns
         = f.label :datumType
         = f.association :datumType, collection: @groups, as: :grouped_select, label_method: :description, value_method: :id, group_method: :datumTypes, group_label_method: :name
-      .small-6.columns  
+      .large-6.columns  
         = f.label :value
         = f.input :value
     .row
-      .small-12.columns
+      .large-12.columns
         = f.label :comment
         = f.input :comment, as: :text, input_html: {maxlength: 250, rows: 4}
 
     .row    
-      .small-centered.small-9.columns.text-center
+      .small-10.small-centered.columns.text-center
         - if @formURL == user_data_path(current_user)
-          .small-6.columns
+          .large-6.columns.text-center
             = f.button :submit, button_description
-          .small-6.columns
-            = f.button :submit, "Create and Stay"
+          .large-6.columns.text-center
+            = f.button :submit, "Create & Stay"
         - else
-          .small-6.small-centered.columns
+          .large-6.large-centered.columns.text-center
             = f.button :submit, button_description
 

@@ -57,26 +57,33 @@ $(document).ready( function() {
     // });
 
     //Tie any field of class "dateField" to the datepicker.
-    $(".datetimeField").datetimepicker( {
-        dateFormat: "mm/dd/yy",
-        timeFormat: "hh:mm tt",
-        hourGrid: 4,
-        minuteGrid: 15,
-        showButtonPanel: true,
-        changeYear: true,
-        changeMonth: true,
-        showMonthAfterYear: true,
-        addSliderAccess: true,
-        sliderAccessArgs: {}
-      });
+    // $(".datetimeField").datetimepicker( {
+    //     dateFormat: "mm/dd/yy",
+    //     timeFormat: "hh:mm tt",
+    //     hourGrid: 4,
+    //     minuteGrid: 15,
+    //     showButtonPanel: true,
+    //     changeYear: true,
+    //     changeMonth: true,
+    //     showMonthAfterYear: true,
+    //     addSliderAccess: true,
+    //     sliderAccessArgs: {}
+    //   });
 
-    $(".dateField").datepicker( {
-        dateFormat: "mm/dd/yy",
-        showButtonPanel: true,
-        changeYear: true,
-        changeMonth: true,
-        showMonthAfterYear: true
-      });
+    $('.datetimeField').mobiscroll().datetime({
+        theme: 'ios7',
+        display: 'bubble',
+        mode: 'mixed',
+        animate: 'fade'
+    });  
+
+    // $(".dateField").datepicker( {
+    //     dateFormat: "mm/dd/yy",
+    //     showButtonPanel: true,
+    //     changeYear: true,
+    //     changeMonth: true,
+    //     showMonthAfterYear: true
+    //   });
 
     $("table.tablesorter").tablesorter();
 
@@ -93,11 +100,12 @@ $(document).ready( function() {
       dateInput = $(this).closest('.row').find('.dateField, .datetimeField');
 
       if (dateInput) {
-        if (dateInput.datepicker('widget').is(':hidden')) {
-          dateInput.datepicker("show");
-        } else {
-          dateInput.datepicker("hide");
-        }
+        dateInput.mobiscroll("show");
+        // if (dateInput.datepicker('widget').is(':hidden')) {
+        //   dateInput.mobiscroll("show");
+        // } else {
+        //   dateInput.mobiscroll("hide");
+        // }
       }
 
       return false;  //Prevent scroll to top of screen
@@ -116,7 +124,7 @@ $(document).ready( function() {
 
 
   if ($('body.data_new').length) {
-     $(".datetimeField").datetimepicker('setDate', (new Date()) );
+     $(".datetimeField").mobiscroll('setDate', (new Date()), true );
 
      // Create dummy select to hold the entire optgroup list of groups / types
      $("select#datum_datumType_id").after('<select id="holding" class="hidden"></select>');
@@ -126,7 +134,7 @@ $(document).ready( function() {
 
   if ($('body.data_edit').length) {
      date = new Date($('#datum_effective_at').val());
-     $(".datetimeField").datetimepicker('setDate', date );
+     $(".datetimeField").mobiscroll('setDate', date, true );
 
      // Create dummy select to hold the entire optgroup list of groups / types
      $("select#datum_datumType_id").after('<select id="holding" class="hidden"></select>');
