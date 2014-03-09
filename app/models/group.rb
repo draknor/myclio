@@ -10,4 +10,8 @@ class Group < ActiveRecord::Base
   scope :has_types, joins(:datumTypes).group('groups.id').having('count(datum_types.id)>0')
   scope :has_active_types, joins(:datumTypes).where('datum_types.inactive != true OR datum_types.inactive IS NULL').group('groups.id').having('count(datum_types.id)>0')
 
+  def datumTypes_active
+    self.datumTypes.active
+  end
+
 end

@@ -20,7 +20,7 @@
     .row
       .large-6.columns
         = f.label :datumType
-        = f.association :datumType, collection: @groups, as: :grouped_select, label_method: :name, value_method: :id, group_method: :datumTypes, group_label_method: :name
+        = f.association :datumType, collection: @groups, as: :grouped_select, label_method: :name, value_method: :id, group_method: :datumTypes_active, group_label_method: :name
       .large-6.columns  
         = f.label :value
         = f.input :value
