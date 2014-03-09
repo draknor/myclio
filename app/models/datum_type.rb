@@ -9,7 +9,7 @@ class DatumType < ActiveRecord::Base
   validates :name, presence: true
 
   default_scope order('name ASC')
-  scope :active, where(:inactive != true)
+  scope :active, where('inactive != true OR inactive IS NULL')
 
   # assigns the user's default group if none is already assigned
   # does NOT save; responsibility of the caller to do that
