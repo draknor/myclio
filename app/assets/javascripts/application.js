@@ -74,7 +74,9 @@ $(document).ready( function() {
         theme: 'ios7',
         display: 'bubble',
         mode: 'mixed',
-        animate: 'fade'
+        animate: 'fade',
+        stepMinute: 5,
+        showNow: true
     });  
 
     // $(".dateField").datepicker( {

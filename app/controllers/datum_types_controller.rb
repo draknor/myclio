@@ -66,11 +66,12 @@ class DatumTypesController < ApplicationController
   # PUT /datum_types/1
   # PUT /datum_types/1.json
   def update
-    @datum_type = DatumType.find(params[:id])
+    @user = current_user
+    @datum_type = @user.datumTypes.find(params[:id])
 
     respond_to do |format|
       if @datum_type.update_attributes(params[:datum_type])
-        format.html { redirect_to user_datum_types_path(current_user), notice: "#{@datum_type.description} was successfully updated." }
+        format.html { redirect_to user_datum_types_path(current_user), notice: "#{@datum_type.name} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -82,7 +83,8 @@ class DatumTypesController < ApplicationController
   # DELETE /datum_types/1
   # DELETE /datum_types/1.json
   def destroy
-    @datum_type = DatumType.find(params[:id])
+    @user = current_user
+    @datum_type = @user.datumTypes.find(params[:id])
     @datum_type.destroy
 
     respond_to do |format|
@@ -90,4 +92,35 @@ class DatumTypesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def activate
+    @user = current_user
+    @datum_type = @user.datumTypes.find(params[:id])
+
+    respond_to do |format|
+      if @datum_type.activate
+        format.html { redirect_to user_datum_types_path(current_user), notice: "#{@datum_type.name} was activated." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to user_datum_types_path(current_user), error: "Unable to activate #{@datum_type.name}." }
+        format.json { render json: @datum_type.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def deactivate
+    @user = current_user
+    @datum_type = @user.datumTypes.find(params[:id])
+
+    respond_to do |format|
+      if @datum_type.deactivate
+        format.html { redirect_to user_datum_types_path(current_user), notice: "#{@datum_type.name} was deactivated." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to user_datum_types_path(current_user), error: "Unable to deactivate #{@datum_type.name}." }
+        format.json { render json: @datum_type.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 end

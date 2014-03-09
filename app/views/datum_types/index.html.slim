@@ -9,17 +9,23 @@
         thead
           tr
             th Group
-            th Description
-            th.actions Actions
+            th Name
+            th.actions colspan=3 Actions
 
-        tbody
+        tbody.datum_types
           - @datum_types.each do |datum_type|
-            tr
+            tr[class="#{datum_type.inactive == true ? 'inactive' : 'active'}"]
               td = @groups.include?(datum_type.group) ? datum_type.group.name : ''
-              td = datum_type.description
-              td.actions
+              td = datum_type.name
+              td
+                - if datum_type.inactive 
+                  = link_to 'Activate', activate_user_datum_type_path(current_user,datum_type), method: :put, class: "button small"
+                - else
+                  = link_to 'Deactivate', deactivate_user_datum_type_path(current_user,datum_type), method: :put, class: "button small"
+              td
                 = link_to 'Edit', edit_user_datum_type_path(current_user,datum_type), class: "button small"
-                = link_to 'X', user_datum_type_path(current_user,datum_type), class: "button small alert", :method => :delete, :data => { :confirm => 'Are you sure?' }
+              td
+                = link_to raw('&times;'), user_datum_type_path(current_user,datum_type), class: "button small alert", :method => :delete, :data => { :confirm => 'Are you sure?' }
 
       .text-center
         = link_to 'New Data Type', new_user_datum_type_path(current_user), { class: "button small" }

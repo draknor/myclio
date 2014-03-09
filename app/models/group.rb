@@ -6,6 +6,8 @@ class Group < ActiveRecord::Base
 
   validates :name, presence: true
 
-  default_scope order('name ASC')
+  default_scope order('groups.name ASC')
+  scope :has_types, joins(:datumTypes).group('groups.id').having('count(datum_types.id)>0')
+  scope :has_active_types, joins(:datumTypes).where('datum_types.inactive != true OR datum_types.inactive IS NULL').group('groups.id').having('count(datum_types.id)>0')
 
 end

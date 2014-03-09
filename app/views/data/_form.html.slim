@@ -15,11 +15,12 @@
      
       .large-6.pull-6.columns
         = f.label "Group"
-        = select_tag "groups", options_from_collection_for_select(@groups, "name", "name"), include_blank: true
+        - selected_group = @datum.datumType.nil? || @datum.datumType.group.nil? ? nil : @datum.datumType.group.name
+        = select_tag "groups", options_from_collection_for_select(@groups, "name", "name", selected_group), include_blank: true
     .row
       .large-6.columns
         = f.label :datumType
-        = f.association :datumType, collection: @groups, as: :grouped_select, label_method: :description, value_method: :id, group_method: :datumTypes, group_label_method: :name
+        = f.association :datumType, collection: @groups, as: :grouped_select, label_method: :name, value_method: :id, group_method: :datumTypes, group_label_method: :name
       .large-6.columns  
         = f.label :value
         = f.input :value

@@ -72,9 +72,9 @@ textarea {
   Always keep the datepicker calendar above everything.  The
   postfix buttons will float above the calendar if we don't do this.
 */
-.ui-datepicker {
-  z-index: 3 !important;
-}
+// .ui-datepicker {
+//   z-index: 3 !important;
+// }
 
 dl {
   .ui* {
@@ -91,10 +91,10 @@ select {
   }
 }
 
-.ui-datepicker .ui-datepicker-title select {
-  font-size: 0.8em;
-  display: inline-block;
-}
+// .ui-datepicker .ui-datepicker-title select {
+//   font-size: 0.8em;
+//   display: inline-block;
+// }
 
 .panel table {
 	width: 100%;
@@ -132,7 +132,7 @@ select {
 
 /* tables */
 table.tablesorter thead tr .header {
-  background-image: url(bg.gif);
+  //background-image: image-url("bg.gif");
   background-repeat: no-repeat;
   background-position: center right;
   cursor: pointer;
@@ -155,6 +155,17 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 background-color: #8dbdd8;
 }
 
+tbody.datum_types {
+  tr.inactive td {
+    a {
+      font-style: normal;
+    }
+
+    color: #9D9D9D;
+    font-style: italic;
+
+  }
+}
 
 @media (max-width: 768px) {
   table tbody tr th {

@@ -37,8 +37,9 @@ class DataController < ApplicationController
   # GET /data/new.json
   def new
     @datum = Datum.new
-    @datumTypes = current_user.datumTypes.all
-    @groups = current_user.groups.all
+    @datumTypes = current_user.datumTypes.active
+    @groups = current_user.groups.has_active_types
+    @groups.sort! { |a,b| a.name.downcase <=> b.name.downcase } 
     @formURL = user_data_path(current_user)
 
     respond_to do |format|
@@ -50,8 +51,9 @@ class DataController < ApplicationController
   # GET /data/1/edit
   def edit
     @datum = current_user.data.find(params[:id])
-    @datumTypes = current_user.datumTypes.all
-    @groups = current_user.groups.all
+    @datumTypes = current_user.datumTypes.active
+    @groups = current_user.groups.has_active_types
+    @groups.sort! { |a,b| a.name.downcase <=> b.name.downcase } 
     @formURL = user_datum_path(current_user)
 
   end

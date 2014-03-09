@@ -22,7 +22,7 @@
             li
               = select_tag :group, options_for_select( current_user.groups.collect { |d| [d.name, d.id] }, params[:group] ), {prompt: 'Search groups', class: 'placeholder'}
             li
-              = select_tag :datumType, grouped_options_for_select( current_user.groups.collect { |g| [g.name,g.datumTypes.collect { |d| [d.description, d.id] } ] }, params[:datumType] ), {prompt: 'Search types', class: 'placeholder'}
+              = select_tag :datumType, grouped_options_for_select( current_user.groups.collect { |g| [g.name,g.datumTypes.collect { |d| [d.name, d.id] } ] }, params[:datumType] ), {prompt: 'Search types', class: 'placeholder'}
             li
               = text_field_tag :comment, params[:comment], {placeholder: "Search comments"}
         .large-3.columns
@@ -47,7 +47,7 @@
               td.datetime
                 .show-for-small = datum.effective_at.nil? ? "" : datum.effective_at.strftime("%-m/%-d/%y at %l:%M %P")
                 .hide-for-small = datum.effective_at.nil? ? "" : datum.effective_at.strftime("%a, %b %e %Y at %l:%M %P %Z")
-              td.datatype = datum.datumType.nil? ? "" : datum.datumType.description
+              td.datatype = datum.datumType.nil? ? "" : datum.datumType.name
               td.value = datum.value
               td.comment = datum.comment
               td.actions

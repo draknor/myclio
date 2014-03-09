@@ -1,14 +1,15 @@
 class DatumType < ActiveRecord::Base
-  attr_accessible :description, :id, :user_id, :group_id
+  attr_accessible :name, :description, :id, :user_id, :group_id, :inactive
   before_save :assign_other_group
 
   belongs_to :user, inverse_of: :datumTypes
   belongs_to :group, inverse_of: :datumTypes
   has_many :data
 
-  validates :description, presence: true
+  validates :name, presence: true
 
   default_scope order('description ASC')
+  scope :active, where(:inactive != true)
 
   # assigns the user's default group if none is already assigned
   # does NOT save; responsibility of the caller to do that
@@ -19,4 +20,20 @@ class DatumType < ActiveRecord::Base
     self.group_id = other
     self.group_id
   end
+
+  def activate
+    if self.inactive.nil? || self.inactive
+      self.update_attributes(inactive: false)
+    end
+    !self.inactive
+  end
+
+  def deactivate
+    if self.inactive.nil? || !self.inactive
+      self.update_attributes(inactive: true)
+    end
+    self.inactive
+  end
+
+
 end

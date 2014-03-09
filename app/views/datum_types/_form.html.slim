@@ -2,16 +2,22 @@
   = f.error_notification
   .form-inputs
     .field.row
-      .small-4.columns.text-right
+      .small-2.columns.text-right
         = f.label :group
-      .small-8.columns
+      .small-10.columns
         = f.association :group, collection: @groups, label_method: :name, value_method: :id
 
 
     .field.row        
-      .small-4.columns.text-right
+      .small-2.columns.text-right
+        = f.label :title
+      .small-10.columns
+        = f.input :title
+
+    .field.row        
+      .small-2.columns.text-right
         = f.label :description
-      .small-8.columns
+      .small-10.columns
         = f.input :description
 
   .form-actions
