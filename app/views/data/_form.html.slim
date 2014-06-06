@@ -8,7 +8,7 @@
         .row.collapse
           .small-10.columns
             input.datetimeField#effective_at_proxy type="text" placeholder="mm/dd/yyyy hh:mm"
-            = f.input_field :effective_at, as: :hidden
+            = f.input_field :effective_at, as: :hidden, :data => { :iso8601 => @datum.effective_at_iso8601 }
           .small-2.columns
             a.button.secondary.expand.postfix.calendarIcon href="#"
               i.icon-calendar
@@ -32,7 +32,10 @@
           |Limit:&nbsp;
           span#comment_count
             |0
-          |&nbsp;/ 250 characters
+          |&nbsp;/&nbsp;
+          span#comment_maxlength
+            |0
+          |&nbsp;characters
     .row    
       .small-10.small-centered.columns.text-center
         - if @formURL == user_data_path(current_user)

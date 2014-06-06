@@ -32,6 +32,11 @@ class Datum < ActiveRecord::Base
 		end
 
   	max > 0 ? data.limit(max) : data
-	end
+  end
+
+
+  def effective_at_iso8601
+    self.effective_at.nil? ? nil : self.effective_at.iso8601
+  end
 
 end

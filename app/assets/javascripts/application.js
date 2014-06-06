@@ -116,7 +116,7 @@ $(document).ready( function() {
 
   if ( $("#effective_at_proxy").length ) {
     $("#effective_at_proxy").on("change", function() { 
-      var val = new Date($("#effective_at_proxy").val());
+      var val = createDate($("#effective_at_proxy").val());
       console.log("eff_at_proxy: "+val);
       var str = $.datepicker.formatDate("yy-m-d",val) + " " + val.getHours() + ":" + val.getMinutes() ;
       $("#datum_effective_at").val(str); 
@@ -131,9 +131,11 @@ $(document).ready( function() {
   }
 
   if ($('body.data_edit').length) {
-     date = new Date($('#datum_effective_at').val());
-     console.log("body.data_edit date: " + date)
-     $(".datetimeField").mobiscroll('setDate', date, true );
+    console.log("body.data_edit datum_eff_at.val: " + $('#datum_effective_at').data('iso8601'));
+    date = createDate($('#datum_effective_at').data('iso8601'));
+    console.log("body.data_edit date: " + date);
+    $(".datetimeField").mobiscroll('setDate', date, true );
+    $("#comment_count").html($("#datum_comment").val().length);
 
   }
 
@@ -142,6 +144,9 @@ $(document).ready( function() {
     $("select#datum_datumType_id").after('<select id="holding" class="hidden"></select>');
     // Shuffle optgroups around when group is changed
     $("select#groups").on("change", change_groups );
+
+    $("#comment_maxlength").html($("#datum_comment").attr('maxLength'));
+
 
     $("#datum_comment").on("keyup", function() {
       $("#comment_count").html($(this).val().length);
@@ -157,6 +162,12 @@ $(document).ready( function() {
 
 
 });
+
+function createDate(str) {
+  console.log("createDate: " + str);
+  var date = new Date(str)
+  return date;  //moment(str).toDate();
+}
 
 function change_groups() {
   var selGroups = "select#groups"
