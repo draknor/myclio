@@ -180,3 +180,13 @@ tbody.datum_types {
 .f-dropdown li a {
   color: #fff;
 }
+
+// based on Foundation's small.error styling
+small.field-message {
+  display: block;
+  padding: 0.375em 0.25em;
+  margin-top: -1.3125em;
+  margin-bottom: 1em;
+  font-size: 0.66em;
+  font-style: italic;
+}

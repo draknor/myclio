@@ -117,7 +117,7 @@ $(document).ready( function() {
   if ( $("#effective_at_proxy").length ) {
     $("#effective_at_proxy").on("change", function() { 
       var val = new Date($("#effective_at_proxy").val());
-      //console.log(val);
+      console.log("eff_at_proxy: "+val);
       var str = $.datepicker.formatDate("yy-m-d",val) + " " + val.getHours() + ":" + val.getMinutes() ;
       $("#datum_effective_at").val(str); 
 
@@ -128,28 +128,33 @@ $(document).ready( function() {
   if ($('body.data_new').length) {
      $(".datetimeField").mobiscroll('setDate', (new Date()), true );
 
-     // Create dummy select to hold the entire optgroup list of groups / types
-     $("select#datum_datumType_id").after('<select id="holding" class="hidden"></select>');
-     // Shuffle optgroups around when group is changed
-     $("select#groups").on("change", change_groups );
   }
 
   if ($('body.data_edit').length) {
      date = new Date($('#datum_effective_at').val());
+     console.log("body.data_edit date: " + date)
      $(".datetimeField").mobiscroll('setDate', date, true );
-
-     // Create dummy select to hold the entire optgroup list of groups / types
-     $("select#datum_datumType_id").after('<select id="holding" class="hidden"></select>');
-     // Shuffle optgroups around when group is changed
-     $("select#groups").on("change", change_groups );
 
   }
 
+  if ($('body.data_new').length || $('body.data_edit').length) {
+    // Create dummy select to hold the entire optgroup list of groups / types
+    $("select#datum_datumType_id").after('<select id="holding" class="hidden"></select>');
+    // Shuffle optgroups around when group is changed
+    $("select#groups").on("change", change_groups );
 
+    $("#datum_comment").on("keyup", function() {
+      $("#comment_count").html($(this).val().length);
+    });
+
+  }
+
+  // Probably need a more specific selector - which was this supposed to be for?
   $("select").on("change", function() {
-  	if ($(this).val() == '') { $(this).addClass('placeholder'); }
-  	else { $(this).removeClass('placeholder'); }
+    if ($(this).val() == '') { $(this).addClass('placeholder'); }
+    else { $(this).removeClass('placeholder'); }
   });
+
 
 });
 

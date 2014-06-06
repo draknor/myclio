@@ -28,7 +28,11 @@
       .large-12.columns
         = f.label :comment
         = f.input :comment, as: :text, input_html: {maxlength: 250, rows: 4}
-
+        small.field-message
+          |Limit:&nbsp;
+          span#comment_count
+            |0
+          |&nbsp;/ 250 characters
     .row    
       .small-10.small-centered.columns.text-center
         - if @formURL == user_data_path(current_user)
