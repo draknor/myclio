@@ -117,7 +117,6 @@ $(document).ready( function() {
   if ( $("#effective_at_proxy").length ) {
     $("#effective_at_proxy").on("change", function() { 
       var val = createDate($("#effective_at_proxy").val());
-      console.log("eff_at_proxy: "+val);
       var str = $.datepicker.formatDate("yy-m-d",val) + " " + val.getHours() + ":" + val.getMinutes() ;
       $("#datum_effective_at").val(str); 
 
@@ -131,9 +130,7 @@ $(document).ready( function() {
   }
 
   if ($('body.data_edit').length) {
-    console.log("body.data_edit datum_eff_at.val: " + $('#datum_effective_at').data('iso8601'));
     date = createDate($('#datum_effective_at').data('iso8601'));
-    console.log("body.data_edit date: " + date);
     $(".datetimeField").mobiscroll('setDate', date, true );
     $("#comment_count").html($("#datum_comment").val().length);
 
@@ -163,10 +160,12 @@ $(document).ready( function() {
 
 });
 
+// Created to consolidate logic when I need to create a date from a datetime string value.
+// May use moment.js or similar in the future
 function createDate(str) {
-  console.log("createDate: " + str);
+  //  console.log("createDate: " + str);
   var date = new Date(str)
-  return date;  //moment(str).toDate();
+  return date;
 }
 
 function change_groups() {
