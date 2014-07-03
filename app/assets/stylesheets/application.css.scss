@@ -123,6 +123,9 @@ select {
 		.alert {
 			margin: 0 0.75em;
 		}
+        li {
+          padding: 0 0.625em;
+        }
 	}
 
 	td {
@@ -177,10 +180,25 @@ tbody.datum_types {
   }
 }
 
-.f-dropdown li a {
-  color: #fff;
+.f-dropdown {
+  padding: 1.25em;
+
+  li {
+    padding: 0;
+    a {
+      color: #fff;
+      &.button.small {
+        font-size: 2em;
+        margin-bottom: 2em;
+      }
+    }
+
+  }
 }
 
+li.action {
+//  max-width: 5.5em;
+}
 // based on Foundation's small.error styling
 small.field-message {
   display: block;

@@ -1,0 +1,2 @@
+li.action = link_to 'Edit', edit_user_datum_path(current_user,datum), class: "button small"
+li.action = link_to raw('&times;'), user_datum_path(current_user,datum), class: "button small alert", :method => :delete, :data => { :confirm => 'Are you sure?' }
