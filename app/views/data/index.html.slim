@@ -10,8 +10,8 @@
     .row.hide-for-small
       = render 'search_form'
     .row.show-for-small
-      div.section-container.accordion data-section="accordion" data-options="one_up: #{@isSearch ? 'true' : 'false'}"
-        section
+      div.section-container.accordion data-section="accordion" data-options="one_up: false"
+        section class="#{@isSearch ? 'active' : ''}"
           p.title data-section-title=''
             a href='#' Search / Filter Options
           div.content data-section-content=''
@@ -20,7 +20,7 @@
     .row
       table
         tr
-          th.datetime Date/Time
+          th.datetime Date &amp; Time
           th.datatype Data Type
           th.value Value
           th.comment Comment
