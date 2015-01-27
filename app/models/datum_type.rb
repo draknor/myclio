@@ -12,6 +12,8 @@ class DatumType < ActiveRecord::Base
   scope :active, where('inactive != true OR inactive IS NULL')
   scope :visible, where(is_private: nil)
 
+
+
   # assigns the user's default group if none is already assigned
   # does NOT save; responsibility of the caller to do that
   def assign_other_group
