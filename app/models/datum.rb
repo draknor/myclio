@@ -5,6 +5,8 @@ class Datum < ActiveRecord::Base
   belongs_to :datumType, inverse_of: :data
 
   scope :desc, order('effective_at DESC')
+	scope :visible, joins(:datumType).merge(DatumType.visible)
+	scope :recent, visible.desc.limit(25)
 
   def self.search(searchVals,max = 0)
   	data = Datum.scoped( :order => 'effective_at DESC' );

@@ -12,7 +12,7 @@ class DataController < ApplicationController
     	@data = current_user.searchData(params)
     else
     	@isSearch = false
-    	@data = current_user.data.desc.limit(25)
+    	@data = current_user.data.recent
   	end
 
     respond_to do |format|
