@@ -12,6 +12,9 @@
               a#time_now href="#" Now
               | ,&nbsp;
               a#time_last href="#" Last Used
+              - unless @datum.effective_at.nil?
+                |,&nbsp;
+                a#time_original href="#" Original
             = f.input_field :effective_at, as: :hidden, data:  { iso8601: @datum.effective_at_iso8601 }
             = hidden_field_tag :last_effective_at, @last_datum.effective_at_iso8601
 

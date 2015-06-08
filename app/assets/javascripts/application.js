@@ -156,7 +156,12 @@ $(document).ready( function() {
     $("#time_last").on("click", function() {
       date = createDate($('#last_effective_at').val());
       $(".datetimeField").mobiscroll('setDate', date, true );
-    })
+    });
+
+    $("#time_original").on("click", function() {
+      date = createDate($('#datum_effective_at').data('iso8601'));
+      $(".datetimeField").mobiscroll('setDate', date, true );
+    });
 
 
   }
