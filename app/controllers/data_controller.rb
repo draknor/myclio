@@ -37,6 +37,7 @@ class DataController < ApplicationController
   # GET /data/new.json
   def new
     @datum = Datum.new
+    @last_datum = current_user.data.last_touched[0]
     @datumTypes = current_user.datumTypes.active
     @groups = current_user.groups.has_active_types
     @groups.sort! { |a,b| a.name.downcase <=> b.name.downcase } 
@@ -51,6 +52,7 @@ class DataController < ApplicationController
   # GET /data/1/edit
   def edit
     @datum = current_user.data.find(params[:id])
+    @last_datum = current_user.data.last_touched[0]
     @datumTypes = current_user.datumTypes.active
     @groups = current_user.groups.has_active_types
     @groups.sort! { |a,b| a.name.downcase <=> b.name.downcase } 

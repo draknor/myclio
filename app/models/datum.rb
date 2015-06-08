@@ -7,6 +7,7 @@ class Datum < ActiveRecord::Base
   scope :desc, order('effective_at DESC')
 	scope :visible, lambda { DatumType.unscoped { joins(:datumType).merge(DatumType.visible) } }
 	scope :recent, visible.desc.limit(25)
+	scope :last_touched, order('updated_at DESC').limit(1)
 
   def self.search(searchVals,max = 0)
   	data = Datum.scoped( :order => 'effective_at DESC' );

@@ -149,6 +149,16 @@ $(document).ready( function() {
       $("#comment_count").html($(this).val().length);
     });
 
+    $("#time_now").on("click", function() {
+      $(".datetimeField").mobiscroll('setDate', (new Date()), true );
+    });
+
+    $("#time_last").on("click", function() {
+      date = createDate($('#last_effective_at').val());
+      $(".datetimeField").mobiscroll('setDate', date, true );
+    })
+
+
   }
 
   // Probably need a more specific selector - which was this supposed to be for?

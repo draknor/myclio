@@ -8,7 +8,13 @@
         .row.collapse
           .small-10.columns
             input.datetimeField#effective_at_proxy type="text" placeholder="mm/dd/yyyy hh:mm"
-            = f.input_field :effective_at, as: :hidden, :data => { :iso8601 => @datum.effective_at_iso8601 }
+            small.field-message
+              a#time_now href="#" Now
+              | ,&nbsp;
+              a#time_last href="#" Last Used
+            = f.input_field :effective_at, as: :hidden, data:  { iso8601: @datum.effective_at_iso8601 }
+            = hidden_field_tag :last_effective_at, @last_datum.effective_at_iso8601
+
           .small-2.columns
             a.button.secondary.expand.postfix.calendarIcon href="#"
               i.icon-calendar
