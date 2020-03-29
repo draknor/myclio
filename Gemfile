@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
-gem 'sqlite3'
-gem 'mysql2'
+#gem 'sqlite3'
+gem 'mysql2','0.3.21' 
+#	git: "https://github.com/draknor/mysql2.git",
+#	ref: "29ccd288821feba1cb35d7f99a0e1324b541f70e"
+
 gem 'cancan'
 gem 'devise'
 gem 'figaro'
